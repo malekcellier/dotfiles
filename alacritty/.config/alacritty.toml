@@ -1,0 +1,46 @@
+# see https://alacritty.org/config-alacritty.html
+import = [    
+    # This is from catppuccin github    
+    # uncomment the flavour you want below:
+    # "~/.config/alacritty/catppuccin-latte.toml"
+    # "~/.config/alacritty/catppuccin-frappe.toml"
+    # "~/.config/alacritty/catppuccin-macchiato.toml"
+    # "~/.config/alacritty/catppuccin-mocha.toml"
+]
+shell.program = "/opt/homebrew/bin/bash"
+shell.args = ["-l"]
+working_directory = "None"
+live_config_reload = true
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+padding.x = 14
+padding.y = 14
+decorations = "Buttonless"
+opacity = 0.9
+blur = true
+option_as_alt = "None"
+
+[font]
+size = 14
+
+[font.normal]
+family = "MesloLGS Nerd Font Mono"
+style = "Regular"
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+blink_interval = 500
+blink_timeout = 5
+unfocused_hollow = true
+
+[cursor.style]
+blinking = "On"
+shape = "Block"
+
+[mouse]
+hide_when_typing = true
