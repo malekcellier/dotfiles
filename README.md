@@ -28,4 +28,5 @@ The inspiration for this configuration comes from the following creators:
 - [devopstoolbox](https://github.com/omerxx/dotfiles)
 - [xero](https://github.com/xero/dotfiles)
 - [daviwil](https://github.com/daviwil/dotfiles)
+- [mbvissers](https://github.com/mbvissers/dotfiles)
 - [shakeelmohamed](https://github.com/shakeelmohamed/stow-dotfiles)

@@ -37,10 +37,11 @@ alias nas="cd ~/NAScopy/"
 
 
 # Path modifications
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:/usr/local/sbin"
 if [ -d "$HOME/.cargo/bin" ]; then
     export PATH="$HOME/.cargo/bin:$PATH"
 fi
-
 # Homebrew
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -49,4 +50,7 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 
 # Defaults
-export EDITOR=nvim
+export EDITOR="nvim"
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export K9S_CONFIG_DIR="$HOME/.config/k9s"
