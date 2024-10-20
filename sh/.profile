@@ -1,4 +1,4 @@
-echo "Welcome to .profile, $USER!"
+# echo "Welcome to .profile, $USER!"
 
 # Only for mac, provides color in sh ls
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -54,3 +54,8 @@ export EDITOR="nvim"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export K9S_CONFIG_DIR="$HOME/.config/k9s"
+
+# TMUX
+export TMUX_PLUGIN_MANAGER_PATH="$XDG_CONFIG_HOME/tmux/plugins"
+
+alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/.tmux.conf"
