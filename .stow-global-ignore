@@ -2,3 +2,5 @@
 .git
 setup.sh
 .DS_Store
+README.md
+backup/
