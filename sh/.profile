@@ -1,4 +1,4 @@
-echo "Welcome to .profile, $USER!"
+# echo "Welcome to .profile, $USER!"
 
 # Define some methods
 # check that a commands exists on the system
