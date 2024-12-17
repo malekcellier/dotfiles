@@ -11,42 +11,52 @@
   - [Shells](#shells)
   - [Shell Prompt](#shell-prompt)
   - [Package Manager](#package-manager)
-  - [Git](#git)
+  - [Version Control](#version-control)
   - [File manager](#file-manager)
-- [Resources](#resources)
+- [References](#references)
 
 ## ToDo
 
-- [-] alacritty
-- [X] bash
-- [X] brew
-- [-] btop
-- [ ] fish
-- [ ] git
-- [ ] iterm2
-- [ ] k9s
-- [ ] karabiner
-- [ ] lazygit
-- [ ] nvim
-- [ ] ranger
-- [-] sh
-- [ ] starship
-- [ ] tmux
-- [ ] uv
-- [-] wezterm
-- [ ] yazi
-- [-] zsh
+Here is the list of applications and utility, organized as a todo-list until I get them all done.
+
+- [x] [alacritty](#alacritty)
+- [X] [bash](#bash)
+- [X] [brew](#brew)
+- [ ] [btop](#btop)
+- [ ] [fish](#fish)
+- [ ] [git](#git)
+- [ ] [iterm2](#iterm2)
+- [ ] [k9s](#k9s)
+- [ ] [lazygit](#lazygit)
+- [ ] [nvim](#nvim)
+- [ ] [ranger](#ranger)
+- [ ] [sh](#sh)
+- [ ] [starship](#starship)
+- [ ] [tmux](#tmux)
+- [ ] [uv](#uv)
+- [x] [wezterm](#wezterm)
+- [x] [yazi](#yazi)
+- [ ] [zsh](#zsh)
 
 ## Background
 
-This repo contains my dotfile configuration, allowing for a consistent computing experience across multiple machines.
-In my normal workflow, I use mac os, ubuntu, and windows 11.
+This repo contains my dotfile configuration, allowing for a consistent computing experience across multiple machines. In my normal workflow, I use ``macos``, ``ubuntu``, and ``Windows 11`` and I want to minimize the differences between my experience in those environments.
 
-As much as possible, I use the ``XDG`` base directory specification with ``XDC_CONFIG_HOME``.
+As much as possible, I use the ``XDG`` base directory specification by setting the environment variable ``XDG_CONFIG_HOME`` like so:
+
+```bash
+export XDG_CONFIG_HOME="$HOME/.config"
+```
 
 ## Usage
 
-I manage the various configuration files in this repo using [GNU Stow](https://www.gnu.org/software/stow/).  This allows me to set up symlinks for all of my dotfiles using a single command, assuming that the repo has been cloned in ~:
+I manage the various configuration files in this repo using [GNU Stow](https://www.gnu.org/software/stow/).  It can be installed using ``brew``:
+
+```bash
+brew install stow
+```
+
+``stow`` allows me to set up symlinks for all of my dotfiles using a single command, assuming that the repo has been cloned in ~:
 
 ```bash
 stow .
@@ -71,26 +81,32 @@ As of ``2024-12`` here is how the ``github`` projects compare:
 
 #### Alacritty
 
-[Alacritty](https://github.com/alacritty/alacritty) is a cross-platform GPU-powered terminal emulator configured using ``toml`` files.
-It plays well with ``tmux``.
+[Alacritty](https://github.com/alacritty/alacritty) is a cross-platform GPU-powered terminal emulator configured using ``toml`` files. It plays well with ``tmux``.
 
-#### WezTerm
-
-[WezTerm](https://github.com/wez/wezterm) is a cross-platform GPU-powered terminal emulator and multiplexer configured using ``lua`` files.
-It provides an alternative to ``tmux``.
+The configuration file is pretty straightforward to understand, the reference can be found in the [official documentation](https://alacritty.org/config-alacritty.html).
 
 #### iTerm2
 
 I use it occasionally. Configuration is done through the GUI and results in a ``*.plist`` file.
+
+#### WezTerm
+
+[WezTerm](https://github.com/wez/wezterm) is a cross-platform GPU-powered terminal emulator and multiplexer configured using ``lua`` files. It provides an alternative to ``tmux``.
+
+The configuration file is actually a ``lua`` script, the reference can be found in the [official documentation](https://wezfurlong.org/wezterm/config/files.html).
 
 ### Shells
 
 I use both ``bash`` and ``zsh`` which means that I have several files to manage.
 The logical flow is as follows:
 
+#### sh
+
 #### bash
 
 #### zsh
+
+#### fish
 
 ### Shell prompt
 
@@ -105,7 +121,7 @@ I use ``brew`` as a package manager and complement it with [homebrew-bundle](htt
 Dump packages to a ``Brewfile`` using:
 
 ```bash
-brew bundle dump --describe
+brew bundle dump --force --describe
 ```
 
 Reinstall packages:
@@ -118,9 +134,9 @@ brew bundle
 
 Alternatively, a simpler solution as in [here](https://github.com/mathiasbynens/dotfiles/blob/main/brew.sh) can work too.
 
-### Git
+### Version Control
 
-#### git config
+#### git
 
 #### lazygit
 
@@ -132,9 +148,25 @@ Uses a ``config.yml`` file. One can use the ``catppuccin`` theme but it requires
 
 #### yazi
 
-## Resources
+``yazi`` is a modern alternative to ``ranger`` written in ``Rust``. It is noticeably faster than ``ranger`` especially for network volumes (``SMB``).
 
-### Reference guides
+The configuration is done through a ``yazi.toml`` file.
+
+### Productivity
+
+#### btop
+
+#### k9s
+
+#### nvim
+
+#### tmux
+
+#### uv
+
+## References
+
+### Guides
 
 - [dotfiles guide](https://dotfiles.github.io/)
 - [awesome dotfile](https://github.com/webpro/awesome-dotfiles)
