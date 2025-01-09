@@ -77,6 +77,11 @@ if isOS "macos"; then
     fi
 fi
 
+# alias for the path to the documents folder in the icloud
+alias icloud="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents"
+# icloud code folder
+alias ic="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/code"
+
 
 # Path modifications
 export PATH="$PATH:$HOME/.local/bin"
