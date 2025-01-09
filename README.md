@@ -22,7 +22,7 @@ Here is the list of applications and utility, organized as a todo-list until I g
 - [x] [alacritty](#alacritty)
 - [X] [bash](#bash)
 - [X] [brew](#brew)
-- [ ] [btop](#btop)
+- [X] [btop](#btop)
 - [ ] [fish](#fish)
 - [ ] [git](#git)
 - [ ] [iterm2](#iterm2)
@@ -40,7 +40,7 @@ Here is the list of applications and utility, organized as a todo-list until I g
 
 ## Background
 
-This repo contains my dotfile configuration, allowing for a consistent computing experience across multiple machines. In my normal workflow, I use ``macos``, ``ubuntu``, and ``Windows 11`` and I want to minimize the differences between my experience in those environments.
+This repo contains my dotfile configuration, allowing for a consistent coding experience across multiple machines. In my normal workflow, I use ``macos``, ``ubuntu``, and ``Windows 11`` and I want to minimize the differences between my experience in those environments.
 
 As much as possible, I use the ``XDG`` base directory specification by setting the environment variable ``XDG_CONFIG_HOME`` like so:
 
@@ -74,16 +74,23 @@ stow bash -t ~
 
 I currently use 2 different terminals and I have yet to decide on which one to settle.
 
-As of ``2024-12`` here is how the ``github`` projects compare:
+As of ``2024-12-19`` here is how the ``github`` projects compare:
 
-- ``Alacritty``: 56.8K :star:, 449 :eyes:, 3k forks, toml config, Apache License v2.0
-- ``WezTerm``: 18.2K :star:, 90 :eyes:, 813 forks, lua config, MIT license
+- ``Alacritty``: 57K :star:, 449 :eyes:, 3k forks, toml config, Apache License v2.0
+- ``WezTerm``: 18.4K :star:, 93 :eyes:, 817 forks, lua config, MIT license
 
 #### Alacritty
 
 [Alacritty](https://github.com/alacritty/alacritty) is a cross-platform GPU-powered terminal emulator configured using ``toml`` files. It plays well with ``tmux``.
 
 The configuration file is pretty straightforward to understand, the reference can be found in the [official documentation](https://alacritty.org/config-alacritty.html).
+
+The main elements of interest are:
+
+- the window appearance
+- the font
+- the cursor behavior
+- the theme (catpuccin)
 
 #### iTerm2
 
@@ -111,6 +118,8 @@ The logical flow is as follows:
 ### Shell prompt
 
 #### starship
+
+#### p10k
 
 ### Package manager
 
@@ -146,6 +155,10 @@ Uses a ``config.yml`` file. One can use the ``catppuccin`` theme but it requires
 
 #### ranger
 
+``ranger`` is a console file browser/manager.
+
+The configuration is done using ``rc.conf`` see [ranger conf](https://github.com/ranger/ranger/blob/master/ranger/config/rc.conf) as well as ``commands.py``, see [ranger command](https://github.com/ranger/ranger/blob/master/ranger/config/commands.py).
+
 #### yazi
 
 ``yazi`` is a modern alternative to ``ranger`` written in ``Rust``. It is noticeably faster than ``ranger`` especially for network volumes (``SMB``).
@@ -155,6 +168,10 @@ The configuration is done through a ``yazi.toml`` file.
 ### Productivity
 
 #### btop
+
+``btop`` is a resource monitor, it provides graphs for memory, cpu, and network usage.
+
+The configuration is done using a ``btop.conf`` file, which can be edited from the tool itself. The main parameter I use is the theme and the **braille** graph symbol.
 
 #### k9s
 
