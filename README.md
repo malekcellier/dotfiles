@@ -30,6 +30,7 @@ Here is the list of applications and utility, organized as a todo-list until I g
 - [ ] [lazygit](#lazygit)
 - [ ] [nvim](#nvim)
 - [ ] [ranger](#ranger)
+- [ ] [ruff](#ruff)
 - [ ] [sh](#sh)
 - [ ] [starship](#starship)
 - [ ] [tmux](#tmux)
@@ -187,6 +188,34 @@ The configuration is done using a ``btop.conf`` file, which can be edited from t
 #### tmux
 
 #### uv
+
+#### ruff
+
+``ruff`` is an extremely fast Python linter and code formatter, written in Rust.
+
+##### Install
+
+```bash
+uv tool install ruff@latest  # Install Ruff globally.
+```
+
+##### Configuration
+
+A ``.ruff.toml`` file is used (other names are accepted too). ``ruff`` supports up to 800 lint rules (autoflake, flake8, pylint, pep8..)
+
+##### Usage
+
+To run ``ruff`` as a linter.
+
+```bash
+ruff check
+```
+
+To run ``ruff`` as a formatter.
+
+```bash
+ruff format
+```
 
 ## References
 
