@@ -61,7 +61,7 @@ if exists "brew"; then
 fi
 
 alias grep="grep --color=auto"
-alias nvim="neovim"
+alias n="nvim"
 alias lg="lazygit"
 
 alias y="yazi"
