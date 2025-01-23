@@ -12,12 +12,12 @@
   - [Shell Prompt](#shell-prompt)
   - [Package Manager](#package-manager)
   - [Version Control](#version-control)
-  - [File manager](#file-manager)
+  - [File Manager](#file-manager)
   - [Productivity](#productivity)
   - [Coding](#coding)
 - [References](#references)
 
-## ToDo
+## To Dos
 
 Here is the ordered list of applications and utility, organized as a todo-list until I get them all done.
 
@@ -62,13 +62,11 @@ brew install stow
 
 ### Folder structure
 
-As much as possible, I use the ``XDG`` base directory specification by setting the environment variable ``XDG_CONFIG_HOME`` in my ``.profile`` file like so:
+As much as possible, I use the ``XDG`` base directory specification by setting the environment variable ``XDG_CONFIG_HOME`` in my ``.profile`` file. More on that in the section dedicated to [Shells](#shells).
 
 ```bash
 export XDG_CONFIG_HOME="$HOME/.config"
 ```
-
-More on that in the section dedicated to ``Shell``.
 
 This also means that most dotfiles would be hosted under a ``.config`` folder. There are some exceptions to that, for example the ``bash``and ``zsh`` files.
 Each application which uses a ``dotfile`` should have its own eponymous subfolder under ``dotfiles``. It should contain a ``.config`` folder which in turn should contain the configuration file expected by the application.
