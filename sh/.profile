@@ -1,4 +1,10 @@
-# echo "Welcome to .profile, $USER!"
+# Prevent .profile from being sourced multiple times
+if [ -n "$PROFILE_ALREADY_SOURCED" ]; then
+    return
+fi
+export PROFILE_ALREADY_SOURCED=1
+
+echo "Sourcing .profile, $USER!"
 
 # Define some methods
 # check that a commands exists on the system
