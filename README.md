@@ -5,7 +5,7 @@
 [dotfiles](#dotfiles)
 
 - [Background](#background)
-- [Usage](#usage)
+- [Dotfiles management](#dotfiles-management)
 - [Applications](#applications)
   - [Terminal Emulators](#terminal-emulators)
   - [Shells](#shells)
@@ -13,31 +13,36 @@
   - [Package Manager](#package-manager)
   - [Version Control](#version-control)
   - [File manager](#file-manager)
+  - [Productivity](#productivity)
+  - [Coding](#coding)
 - [References](#references)
 
 ## ToDo
 
-Here is the list of applications and utility, organized as a todo-list until I get them all done.
+Here is the ordered list of applications and utility, organized as a todo-list until I get them all done.
 
-- [x] [alacritty](#alacritty)
+- [X] [alacritty](#alacritty)
 - [X] [bash](#bash)
 - [X] [brew](#brew)
 - [X] [btop](#btop)
-- [ ] [fish](#fish)
+- [ ] [fzf](#fzf)
 - [ ] [git](#git)
 - [X] [iterm2](#iterm2)
 - [ ] [k9s](#k9s)
 - [ ] [lazygit](#lazygit)
 - [ ] [nvim](#nvim)
+- [ ] [obsidian](#obsidian)
 - [ ] [ranger](#ranger)
-- [ ] [ruff](#ruff)
+- [X] [ruff](#ruff)
 - [ ] [sh](#sh)
 - [ ] [starship](#starship)
 - [ ] [tmux](#tmux)
 - [ ] [uv](#uv)
-- [x] [wezterm](#wezterm)
-- [x] [yazi](#yazi)
+- [ ] [vscode](#vscode)
+- [X] [wezterm](#wezterm)
+- [X] [yazi](#yazi)
 - [ ] [zsh](#zsh)
+- [ ] [zoxide](#zoxide)
 
 ## Background
 
@@ -147,8 +152,6 @@ The logical flow is as follows:
 
 #### zsh
 
-#### fish
-
 ### Shell prompt
 
 #### starship
@@ -199,6 +202,14 @@ The configuration is done using ``rc.conf`` see [ranger conf](https://github.com
 
 The configuration is done through a ``yazi.toml`` file.
 
+#### zoxide
+
+A smarter ``cd`` command. To install:
+
+```bash
+eval "$(zoxide init bash)"
+```
+
 ### Productivity
 
 #### btop
@@ -207,11 +218,24 @@ The configuration is done through a ``yazi.toml`` file.
 
 The configuration is done using a ``btop.conf`` file, which can be edited from the tool itself. The main parameter I use is the theme and the **braille** graph symbol.
 
+#### fzf
+
 #### k9s
 
-#### nvim
+#### obsidian
 
 #### tmux
+
+Famous terminal session manager with 3 abstractions layers: ``session``, ``window`` (within a ``session``), and ``pane`` (splits a window in several terminals).
+It does not have session persistency across reboots though but this can be fixed using a plugin.
+
+The configuration is done using a ``.tmux.conf`` file located in ``.config/tmux``. Remapping the prefix is the most typical setting, mine is set to ``C-A`` since the letter ``A`` is closest to ``Ctrl``.
+
+Other useful settings:
+
+- Start numbering the windows and panes starting at 1. This makes switching between them easier using the shorcut ``Prefix-3`` to move to the window number 3.
+
+### Coding
 
 #### uv
 
@@ -242,6 +266,10 @@ To run ``ruff`` as a formatter.
 ```bash
 ruff format
 ```
+
+#### nvim
+
+#### vscode
 
 ## References
 
