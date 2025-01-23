@@ -25,7 +25,7 @@ Here is the list of applications and utility, organized as a todo-list until I g
 - [X] [btop](#btop)
 - [ ] [fish](#fish)
 - [ ] [git](#git)
-- [ ] [iterm2](#iterm2)
+- [X] [iterm2](#iterm2)
 - [ ] [k9s](#k9s)
 - [ ] [lazygit](#lazygit)
 - [ ] [nvim](#nvim)
@@ -94,7 +94,14 @@ The main elements of interest are:
 
 #### iTerm2
 
-I use it occasionally. Configuration is done through the GUI and results in a ``*.plist`` file.
+I use it occasionally. Configuration is done through the GUI and results in a ``*.plist`` file which can be placed anywhere in the file system.
+The file location has to be set from the GUI in the following location:
+
+- click ``iTerm2`` on the menu bar, then ``Settings...```
+- navigate to ``General`` > ``Settings``
+- select the checkbox named ``Loads settings from a custom folder or URL``
+- click the ``Browse`` button and select a path, I have chosen ``/Users/<username>/dotfiles/iterm2``
+- click the ``Save Now`` button which will save ``com.googlecode.iterm2.plist`` in the above mentionned folder
 
 #### WezTerm
 
