@@ -1,11 +1,11 @@
-echo "Welcome to .zprofile, $USER!"
+echo "Sourcing .zprofile, $USER!"
 
 # Source .profile to ensure login shells still load common settings
 if [ -f ~/.profile ]; then
-    . ~/.profile
+    source ~/.profile
 fi
 
 
 if [ -f ~/.zshrc ]; then
-   . ~/.zshrc
+   source ~/.zshrc
 fi

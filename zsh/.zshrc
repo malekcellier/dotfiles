@@ -1,7 +1,8 @@
-echo "source .zshrc"
+echo "Sourcing .zshrc, $USER!"
 
-#if [ -f ~/.profile ]; then
-#    . ~/.profile
-#fi
+if [ -f ~/.profile ]; then
+    source ~/.profile
+fi
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
