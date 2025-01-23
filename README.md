@@ -115,14 +115,29 @@ As of ``2025-01-23`` here is how the ``github`` projects compare:
 
 [Alacritty](https://github.com/alacritty/alacritty) is a cross-platform GPU-powered terminal emulator configured using ``toml`` files. It plays well with ``tmux``.
 
-The configuration file is pretty straightforward to understand, the reference can be found in the [official documentation](https://alacritty.org/config-alacritty.html).
+The configuration file ``alacritty.toml`` is pretty straightforward to understand, the reference can be found in the [official documentation](https://alacritty.org/config-alacritty.html).
 
 The main elements of interest are:
 
 - the window appearance
 - the font
 - the cursor behavior
-- the theme (catpuccin)
+- the theme (``catppuccin``)
+
+##### Theme
+
+A theme is self contained in a ``toml`` file. There are several sources available, one of which is [alacritty-theme](https://github.com/alacritty/alacritty-theme). The repo can be cloned and placed under ``alacritty/.config/themes``. Then provide the path to the theme of your choice within the ``alacritty.toml`` configuration file. The downside is that some themes (notably the ``catpuccin`` ones) have not seen any updates in over 2 years.
+
+Alternatively, one can download directly the theme from the ``catpuccin`` github repository. I use the ``mocha`` flavor of the ``catpuccin`` theme. To install, copy the theme files from [catpuccin alacritty](https://github.com/catppuccin/alacritty/tree/main) and place them under the ``alacritty`` folder under ``.config``, then add the correct import statement to refer to the right ``toml`` file:
+
+```bash
+[general]
+import = [    
+    # Provide the path to the theme flavour you want below:
+    "~/.config/alacritty/catppucin-theme/catppuccin-mocha.toml",
+    # "~/.config/alacritty/alacritty-theme/dawnfox.toml"
+]
+```
 
 #### iTerm2
 

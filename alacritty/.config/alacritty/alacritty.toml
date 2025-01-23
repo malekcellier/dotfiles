@@ -37,12 +37,9 @@ live_config_reload = true
 working_directory = "None"
 # see https://alacritty.org/config-alacritty.html
 import = [    
-    # This is from catppuccin github    
-    # uncomment the flavour you want below:
-    # "~/.config/alacritty/catppuccin-latte.toml"
-    # "~/.config/alacritty/catppuccin-frappe.toml"
-    # "~/.config/alacritty/catppuccin-macchiato.toml"
-    "~/.config/alacritty/catppuccin-mocha.toml"
+    # Provide the path to the theme flavour you want below:
+    "~/.config/alacritty/catppucin-theme/catppuccin-mocha.toml",
+    # "~/.config/alacritty/alacritty-theme/dawnfox.toml"
 ]
 
 [terminal]
