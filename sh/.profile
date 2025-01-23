@@ -81,12 +81,19 @@ if isOS "macos"; then
     if pathexists "~/NAScopy";then
         alias nas="cd ~/NAScopy/"
     fi
+    export ICLOUD_DOCS="$HOME/Library/Mobile\ Documents/com~apple~CloudDocs/Documents"
+    if pathexists "$ICLOUD_DOCS"; then
+        alias icloud="cd $ICLOUD_DOCS"
+    fi
+    if pathexists "$ICLOUD_DOCS/code"; then
+        alias ic="cd $ICLOUD_DOCS/code"
+    fi
 fi
 
-# alias for the path to the documents folder in the icloud
-alias icloud="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents"
+## alias for the path to the documents folder in the icloud
+#alias icloud="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents"
 # icloud code folder
-alias ic="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/code"
+#alias ic="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/code"
 
 
 # Path modifications
