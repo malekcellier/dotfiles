@@ -41,33 +41,59 @@ Here is the list of applications and utility, organized as a todo-list until I g
 
 ## Background
 
-This repo contains my dotfile configuration, allowing for a consistent coding experience across multiple machines. In my normal workflow, I use ``macos``, ``ubuntu``, and ``Windows 11`` and I want to minimize the differences between my experience in those environments.
+This repo contains my ``dotfile`` configuration, allowing for a consistent coding experience across multiple machines. In my normal workflow, I use ``macos``, ``ubuntu``, and ``Windows 11`` and I want to minimize the differences between my experience in those environments.
 
-As much as possible, I use the ``XDG`` base directory specification by setting the environment variable ``XDG_CONFIG_HOME`` like so:
+## Dotfiles management
 
-```bash
-export XDG_CONFIG_HOME="$HOME/.config"
-```
+I manage the various configuration files in this repo using [GNU Stow](https://www.gnu.org/software/stow/). It takes care of creating and managint he lifecycle of symbolic links while keeping the configuration files neatly organized under a single folder ``dotfiles``.
 
-## Usage
+### Installation
 
-I manage the various configuration files in this repo using [GNU Stow](https://www.gnu.org/software/stow/).  It can be installed using ``brew``:
+``GNU Stow`` can be installed using ``brew``:
 
 ```bash
 brew install stow
 ```
 
-``stow`` allows me to set up symlinks for all of my dotfiles using a single command, assuming that the repo has been cloned in ~:
+### Folder structure
+
+As much as possible, I use the ``XDG`` base directory specification by setting the environment variable ``XDG_CONFIG_HOME`` in my ``.profile`` file like so:
 
 ```bash
+export XDG_CONFIG_HOME="$HOME/.config"
+```
+
+More on that in the section dedicated to ``Shell``.
+
+This also means that most dotfiles would be hosted under a ``.config`` folder. There are some exceptions to that, for example the ``bash``and ``zsh`` files.
+Each application which uses a ``dotfile`` should have its own eponymous subfolder under ``dotfiles``. It should contain a ``.config`` folder which in turn should contain the configuration file expected by the application.
+
+As an example, let's consider the ``dotfile`` for ``nvim``. The folder structure would look like this:
+
+```bash
+dotfiles/
+├─ nvim/
+│  ├─ .config/
+│  │  ├─ nvim/
+│  │  │  ├─ init.lua
+```
+
+### Setup
+
+``stow`` creates symlinks for all the dotfiles at once using a single command. Assuming that the repo has been cloned into ``dotfiles``:
+
+```bash
+cd dotfiles
 stow .
 ```
 
 Alternatively, one can only deploy certain dotfiles by using the command. Here is an example with the ``bash`` doftile:
 
 ```bash
-stow bash -t ~
+stow bash
 ```
+
+See more options in the [Stow documentation](https://www.gnu.org/software/stow/manual/stow.html#Invoking-Stow).
 
 ## Applications
 
@@ -75,10 +101,10 @@ stow bash -t ~
 
 I currently use 2 different terminals and I have yet to decide on which one to settle.
 
-As of ``2024-12-19`` here is how the ``github`` projects compare:
+As of ``2025-01-23`` here is how the ``github`` projects compare:
 
-- ``Alacritty``: 57K :star:, 449 :eyes:, 3k forks, toml config, Apache License v2.0
-- ``WezTerm``: 18.4K :star:, 93 :eyes:, 817 forks, lua config, MIT license
+- ``Alacritty``: 57.4K :star:, 451 :eyes:, 3.1k forks, toml config, Apache License v2.0
+- ``WezTerm``: 19K :star:, 94 :eyes:, 833 forks, lua config, MIT license
 
 #### Alacritty
 
