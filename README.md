@@ -128,7 +128,7 @@ A theme is self contained in a ``toml`` file. There are several sources availabl
 
 Alternatively, one can download directly the theme from the ``catpuccin`` github repository. I use the ``mocha`` flavor of the ``catpuccin`` theme. To install, copy the theme files from [catpuccin alacritty](https://github.com/catppuccin/alacritty/tree/main) and place them under the ``alacritty`` folder under ``.config``, then add the correct import statement to refer to the right ``toml`` file:
 
-```bash
+```toml
 [general]
 import = [    
     # Provide the path to the theme flavour you want below:
@@ -152,7 +152,22 @@ The file location has to be set from the GUI in the following location:
 
 [WezTerm](https://github.com/wez/wezterm) is a cross-platform GPU-powered terminal emulator and multiplexer configured using ``lua`` files. It provides an alternative to ``tmux``.
 
-The configuration file is actually a ``lua`` script, the reference can be found in the [official documentation](https://wezfurlong.org/wezterm/config/files.html).
+The configuration file is actually a ``lua`` script, the reference can be found in the [official documentation](https://wezfurlong.org/wezterm/config/files.html). The main idea is to create a config object, modify it with the desired options, and finally return it.
+
+For example, changing the theme is as easy as:
+
+```lua
+-- Pull in the wezterm API
+local wezterm = require("wezterm")
+
+-- This will hold the configuration.
+local config = wezterm.config_builder()
+
+-- For example, changing the color scheme:
+config.color_scheme = "Catppuccin Mocha"
+
+return config
+```
 
 ### Shells
 
