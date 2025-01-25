@@ -46,11 +46,13 @@ Here is the ordered list of applications and utility, organized as a todo-list u
 
 ## Background
 
-This repo contains my ``dotfile`` configuration, allowing for a consistent coding experience across multiple machines. In my normal workflow, I use ``macos``, ``ubuntu``, and ``Windows 11`` and I want to minimize the differences between my experience in those environments.
+This repo contains my ``dotfiles`` setup, allowing for a consistent coding experience across multiple machines and OS'es. Mind you, in my normal workflow, I use ``macos``, ``ubuntu``, and ``Windows 11``.
 
 ## Dotfiles management
 
-I manage the various configuration files in this repo using [GNU Stow](https://www.gnu.org/software/stow/). It takes care of creating and managint he lifecycle of symbolic links while keeping the configuration files neatly organized under a single folder ``dotfiles``.
+I use [GNU Stow](https://www.gnu.org/software/stow/) to manage the various configuration files in this repo. In a nutshell, ``Stow`` allows to store all the respective ``dotfiles`` in a dedicated directory (which can be version controlled, and that's part of the point), and then creates symbolic links to the locations that are expected to be in by their respective programs. I name that folder ``dotfiles``.
+
+An important point to remember is that ``Stow`` does not care about the folder structure. It will create a symlink to the user's home directory by default.
 
 ### Installation
 
@@ -68,18 +70,50 @@ As much as possible, I use the ``XDG`` base directory specification by setting t
 export XDG_CONFIG_HOME="$HOME/.config"
 ```
 
-This also means that most dotfiles would be hosted under a ``.config`` folder. There are some exceptions to that, for example the ``bash``and ``zsh`` files.
+Following that convention means that most dotfiles would be under the ``.config`` folder. There are many exceptions to that, for example the ``bash`` and ``zsh`` files.
 Each application which uses a ``dotfile`` should have its own eponymous subfolder under ``dotfiles``. It should contain a ``.config`` folder which in turn should contain the configuration file expected by the application.
 
 As an example, let's consider the ``dotfile`` for ``nvim``. The folder structure would look like this:
 
-```bash
+```tree
 dotfiles/
 ├─ nvim/
 │  ├─ .config/
 │  │  ├─ nvim/
 │  │  │  ├─ init.lua
 ```
+
+Here is a more detailed example listing my home folder with several cases:
+
+```tree
+├── .bash_profile -> dotfiles/bash/.bash_profile
+├── .bashrc -> dotfiles/bash/.bashrc
+├── .config
+│   ├── alacritty -> ../dotfiles/alacritty/.config/alacritty
+│   └── yazi -> ../dotfiles/yazi/.config/yazi
+├── .profile -> dotfiles/sh/.profile
+├── .wezterm.lua -> dotfiles/wezterm/.wezterm.lua
+├── dotfiles
+│   ├── README.md
+│   ├── alacritty
+│   │   └── .config
+│   │       └── alacritty
+│   │           └── alacritty.toml
+│   ├── bash
+│   │   ├── .bash_profile
+│   │   └── .bashrc
+│   ├── wezterm
+│   │   └── .wezterm.lua
+│   └── yazi
+│       └── .config
+│           └── yazi
+│               └── yazi.toml
+└── starship.toml -> dotfiles/starship/starship.toml
+```
+
+Observe that ``.bashrc`` is a symlink to ``dotfiles/bash/.bashrc``, the same goes for ``starship.toml``. On the other hand, ``alacritty`` uses the ``XDG_CONFIG_HOME`` convention and as a result, its configuration file ``alacritty.toml`` is symlinked to ``config/alacritty/`` while residing in the dotfiles folder.
+
+NOTE: ``wezterm`` should recognize the ``XDG_CONFIG_HOME`` but doesn't.
 
 ### Setup
 
@@ -171,7 +205,7 @@ return config
 
 ### Shells
 
-I use both ``bash`` and ``zsh`` which means that I have several files to manage.
+I use both ``bash`` and ``zsh`` which means that I have several files to manage in order to control the settings for both login and interactive shells.
 The logical flow is as follows:
 
 #### sh
