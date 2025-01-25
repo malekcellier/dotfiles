@@ -4,3 +4,4 @@ setup.sh
 .DS_Store
 README.md
 backup/
+\.DS_Store
