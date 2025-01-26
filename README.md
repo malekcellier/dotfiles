@@ -24,25 +24,28 @@ Here is the ordered list of applications and utility, organized as a todo-list u
 - [X] [alacritty](#alacritty)
 - [X] [bash](#bash)
 - [X] [brew](#brew)
+- [X] [homebrew bundle](#homebrew-bundle)
 - [X] [btop](#btop)
 - [ ] [fzf](#fzf)
-- [ ] [git](#git)
+- [X] [git](#git)
 - [X] [iterm2](#iterm2)
 - [ ] [k9s](#k9s)
 - [ ] [lazygit](#lazygit)
+- [X] [mas](#mas)
 - [ ] [nvim](#nvim)
 - [ ] [obsidian](#obsidian)
-- [ ] [ranger](#ranger)
+- [X] [ranger](#ranger)
 - [X] [ruff](#ruff)
-- [ ] [sh](#sh)
+- [X] [sh](#sh)
 - [ ] [starship](#starship)
 - [ ] [tmux](#tmux)
 - [ ] [uv](#uv)
 - [ ] [vscode](#vscode)
 - [X] [wezterm](#wezterm)
 - [X] [yazi](#yazi)
-- [ ] [zsh](#zsh)
-- [ ] [zoxide](#zoxide)
+- [X] [zsh](#zsh)
+- [X] [zoxide](#zoxide)
+- [ ] [winget](#winget)
 
 ## Background
 
@@ -147,6 +150,8 @@ As of ``2025-01-23`` here is how the ``github`` projects compare:
 
 [Alacritty](https://github.com/alacritty/alacritty) is a cross-platform GPU-powered terminal emulator configured using ``toml`` files. It plays well with ``tmux``.
 
+##### TOML configuration
+
 The configuration file ``alacritty.toml`` is pretty straightforward to understand, the reference can be found in the [official documentation](https://alacritty.org/config-alacritty.html).
 
 The main elements of interest are:
@@ -156,7 +161,7 @@ The main elements of interest are:
 - the cursor behavior
 - the theme (``catppuccin``)
 
-##### Theme
+##### Alacritty Theme
 
 A theme is self contained in a ``toml`` file. There are several sources available, one of which is [alacritty-theme](https://github.com/alacritty/alacritty-theme). The repo can be cloned and placed under ``alacritty/.config/themes``. Then provide the path to the theme of your choice within the ``alacritty.toml`` configuration file. The downside is that some themes (notably the ``catpuccin`` ones) have not seen any updates in over 2 years.
 
@@ -186,7 +191,11 @@ The file location has to be set from the GUI in the following location:
 
 [WezTerm](https://github.com/wez/wezterm) is a cross-platform GPU-powered terminal emulator and multiplexer configured using ``lua`` files. It provides an alternative to ``tmux``.
 
+##### LUA configuration
+
 The configuration file is actually a ``lua`` script, the reference can be found in the [official documentation](https://wezfurlong.org/wezterm/config/files.html). The main idea is to create a config object, modify it with the desired options, and finally return it.
+
+##### Wezterm Theme
 
 For example, changing the theme is as easy as:
 
@@ -205,14 +214,49 @@ return config
 
 ### Shells
 
-I use both ``bash`` and ``zsh`` which means that I have several files to manage in order to control the settings for both login and interactive shells.
-The logical flow is as follows:
+Since I use both ``bash`` and ``zsh`` there are several files that impact the behavior of the login and interactive shells.
+In order to avoid duplication, I opted for the following strategy:
+
+- the ``.profile`` file contains all the aliases and cross shell methods
+- ``bash``:
+  - ``.bash_profile`` sources ``.profile`` then``.bashrc``
+  - ``.bashrc`` sources ``.profile`` (relevant for non-login shells only)
+- ``zsh``:
+  - ``.zprofile`` sources ``.profile`` then ``.zshrc``
+  - ``.zshrc`` sources ``.profile`` (relevant for non-login shells only)
+
+The main reasoning is that I do not want to duplicate the variables definition and aliases for the ``bash`` and ``zsh`` configrations.
 
 #### sh
 
+The ``.profile`` file is the original profile configuration for the ``Bourne`` shell ``sh``, it has all aliases and export variables such as ``XDG_CONFIG_HOME``. Also, it performs platform checks before creating aliases. As an example, the path to the ``iCloud`` drive is quite cumbersome to type.
+
+```bash
+export ICLOUD_DOCS="$HOME/Library/Mobile\ Documents/com~apple~CloudDocs/Documents"
+if pathexists "$ICLOUD_DOCS"; then
+    alias icloud="cd $ICLOUD_DOCS"
+fi
+```
+
 #### bash
 
+The ``bash`` configuration is done with both ``.bashrc`` and ``.bash_profile``. The ``.profile`` configuration is also read.
+The ``.bashrc`` contains the setup of external utilities ``starship``, ``zoxide``, etc
+
+```bash
+eval "$(starship init bash)"
+eval "$(zoxide init bash)"
+```
+
 #### zsh
+
+The ``zsh`` configuration is done with both ``.zshrc`` and ``.zprofile``. The ``.profile`` configuration is also read.
+The ``.zshrc`` contains the setup of external utilities ``starship``, ``zoxide``, etc
+
+```zsh
+eval "$(starship init bash)"
+eval "$(zoxide init bash)"
+```
 
 ### Shell prompt
 
@@ -224,7 +268,26 @@ The logical flow is as follows:
 
 #### brew
 
-I use ``brew`` as a package manager and complement it with [homebrew-bundle](https://github.com/Homebrew/homebrew-bundle) which also handles ``casks`` Mac applications, ``mas-cli`` Mac App Store applications and ``vscode`` extensions.
+I use ``brew`` as a package manager for my ``macos`` and ``ubuntu`` machines. This allows to very conviently install, update, remove packages. There is also ``Homebrew Cask`` which can install ``macos`` applications.
+
+##### Daily usage
+
+In order to install a package:
+
+```bash
+brew install wezterm
+```
+
+In order to update all packages:
+
+```bash
+brew update
+brew upgrade
+```
+
+##### Homebrew bundle
+
+``brew`` can be complemented with [homebrew-bundle](https://github.com/Homebrew/homebrew-bundle) which also handles ``casks`` Mac applications, ``mas-cli`` Mac App Store applications and ``vscode`` extensions. It installs automatically when using the ``brew bundle`` command.
 
 Dump packages to a ``Brewfile`` using:
 
@@ -238,13 +301,65 @@ Reinstall packages:
 brew bundle
 ```
 
-#### Script
+NOTE: ``brew bundle`` can also restore the ``mas`` dependencies, and ``vscode`` extensions.
+
+##### Script
 
 Alternatively, a simpler solution as in [here](https://github.com/mathiasbynens/dotfiles/blob/main/brew.sh) can work too.
+
+#### mas
+
+[mas](https://github.com/mas-cli/mas) is a command line interface for the Mac App Store which can be installed using ``brew``:
+
+```bash
+brew install mas
+```
+
+It uses numerical IDs for applications.
+
+```bash
+mas list
+497799835   Xcode                 (16.1)
+441258766   Magnet                (3.0.6)
+409183694   Keynote               (14.2)
+408981434   iMovie                (10.4.3)
+```
+
+To install an app you need its ID, which you can find by using the ``search`` commmand:
+
+```bash
+mas search Xcode
+```
+
+Then use the returned ID to purchase (only for free apps though) the application:
+
+```bash
+mas purchase 497799835
+```
+
+#### winget
+
+[winget](https://github.com/microsoft/winget-cli) is the official Windows Package Manager. It has been shipped with Windows 11 for some time now.
+It is the equivalent of ``brew`` for windos systems.
+
+##### Normal usage
+
+To be done from my windows machine.
+
+##### configuration
+
+To be done from my windows machine.
+
+##### Restoring setup
+
+To be done from my windows machine.
 
 ### Version Control
 
 #### git
+
+The configuration file for git is called ``.gitconfig`` and is expected in the ``$HOME`` folder.
+The most useful setting is the user details.
 
 #### lazygit
 
@@ -271,6 +386,8 @@ A smarter ``cd`` command. To install:
 ```bash
 eval "$(zoxide init bash)"
 ```
+
+Not sure that this one has any dotfile at all.
 
 ### Productivity
 
