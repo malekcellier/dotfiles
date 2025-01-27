@@ -1,22 +1,16 @@
 # Prevent .profile from being sourced multiple times
-if [ -n "$PROFILE_ALREADY_SOURCED" ]; then
+if [ -z "$PROFILE_ALREADY_SOURCED" ]; then
+    export PROFILE_ALREADY_SOURCED=1
+else
     return
 fi
-export PROFILE_ALREADY_SOURCED=1
 
 echo "Sourcing .profile, $USER!"
 
-# Define some methods
-# check that a commands exists on the system
-# Function to determine the OS
-isOS() {
-    case "$(uname -s)" in
-        Darwin) [ "$1" = "macos" ] ;;
-        Linux) [ "$1" = "linux" ] ;;
-        *) return 1 ;; # Unsupported OS
-    esac
-}
 
+OS=$(uname) # Darwin Linux
+
+# Define some methods
 # Function to check if a command exists
 exists() {
     command -v "$1" >/dev/null 2>&1
@@ -28,7 +22,7 @@ pathexists() {
 }
 
 # Only for mac, provides color in sh ls
-if isOS "macos"; then
+if [ "$OS" = "Darwin" ]; then
     export CLICOLOR=1
 fi
 
@@ -69,20 +63,21 @@ alias y="yazi"
 alias e="exit"
 
 # locations
-if isOS "macos"; then
-    if pathexists "/Volumes/Journal"; then
+if [ "$OS" = "Darwin" ]; then
+    echo "OS is Darwin, setting paths accordingly";
+    if pathexists /Volumes/Journal; then
         alias j="cd /Volumes/Journal"
     fi
-    if pathexists "/Volumes/Journal_analysis"; then
+    if pathexists /Volumes/Journal_analysis; then
         alias ja="cd /Volumes/Journal_analysis"
     fi
-    if pathexists "~/Documents/repos/"; then
+    if pathexists ~/Documents/repos/; then
         alias repos="cd ~/Documents/repos/"
     fi
-    if pathexists "~/NAScopy";then
+    if pathexists ~/NAScopy; then
         alias nas="cd ~/NAScopy/"
     fi
-    export ICLOUD_DOCS="$HOME/Library/Mobile\ Documents/com~apple~CloudDocs/Documents"
+    export ICLOUD_DOCS=$HOME/Library/Mobile\ Documents/com~apple~CloudDocs/Documents
     if pathexists "$ICLOUD_DOCS"; then
         alias icloud="cd $ICLOUD_DOCS"
     fi
@@ -90,12 +85,6 @@ if isOS "macos"; then
         alias ic="cd $ICLOUD_DOCS/code"
     fi
 fi
-
-## alias for the path to the documents folder in the icloud
-#alias icloud="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents"
-# icloud code folder
-#alias ic="cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Documents/code"
-
 
 # Path modifications
 export PATH="$PATH:$HOME/.local/bin"
@@ -105,16 +94,22 @@ if [ -d "$HOME/.cargo/bin" ]; then
 fi
 
 # Homebrew
-if isOS "macos"; then
+if [ "$OS" = "Darwin" ]; then
+    echo "brew in Darwin"
 	eval "$(/opt/homebrew/bin/brew shellenv)"
-elif isOS "linux"; then
+elif [ "$OS" = "linux" ]; then
+    echo "brew in Linux"
 	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 # Defaults
 export EDITOR="nvim"
 
-export XDG_CONFIG_HOME="$HOME/.config"
+
+if [ -z "$XDG_CONFIG_HOME" ]; then
+    export XDG_CONFIG_HOME="$HOME/.config"
+fi
+
 export K9S_CONFIG_DIR="$HOME/.config/k9s"
 
 # TMUX
