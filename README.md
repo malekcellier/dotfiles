@@ -1,6 +1,6 @@
 # dotfiles
 
-## TOC
+## Table of content
 
 [dotfiles](#dotfiles)
 
@@ -26,7 +26,7 @@ Here is the ordered list of applications and utility, organized as a todo-list u
 - [X] [brew](#brew)
 - [X] [homebrew bundle](#homebrew-bundle)
 - [X] [btop](#btop)
-- [ ] [fzf](#fzf)
+- [X] [fzf](#fzf)
 - [X] [git](#git)
 - [X] [iterm2](#iterm2)
 - [ ] [k9s](#k9s)
@@ -46,6 +46,11 @@ Here is the ordered list of applications and utility, organized as a todo-list u
 - [X] [zsh](#zsh)
 - [X] [zoxide](#zoxide)
 - [ ] [winget](#winget)
+
+Some more todos:
+
+- [ ] simplify this README by creating a docs folder with a README.md per dotfile
+- [ ] some of the applications listed here do not have dotfile and should be moved somewhere else
 
 ## Background
 
@@ -398,6 +403,25 @@ Not sure that this one has any dotfile at all.
 The configuration is done using a ``btop.conf`` file, which can be edited from the tool itself. The main parameter I use is the theme and the **braille** graph symbol.
 
 #### fzf
+
+[fzf](https://github.com/junegunn/fzf) is a general-purpose command-line fuzzy finder.
+
+##### usage
+
+Install with:
+
+```bash
+brew install fzf
+```
+
+on windows:
+
+```bash
+winget install fzf
+```
+
+No configuration file.
+
 
 #### k9s
 
