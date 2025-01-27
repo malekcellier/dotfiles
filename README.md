@@ -33,14 +33,14 @@ Here is the ordered list of applications and utility, organized as a todo-list u
 - [X] [lazygit](#lazygit)
 - [X] [mas](#mas)
 - [ ] [nvim](#nvim)
-- [ ] [obsidian](#obsidian)
+- [X] [obsidian](#obsidian)
 - [X] [ranger](#ranger)
 - [X] [ruff](#ruff)
 - [X] [sh](#sh)
 - [ ] [starship](#starship)
 - [ ] [tmux](#tmux)
 - [X] [uv](#uv)
-- [ ] [vscode](#vscode)
+- [X] [vscode](#vscode)
 - [X] [wezterm](#wezterm)
 - [X] [yazi](#yazi)
 - [X] [zsh](#zsh)
@@ -433,6 +433,8 @@ The configuration is contained in ``config.yaml``. The TUI look is customized th
 
 #### obsidian
 
+The most important aspect is to keep the same plugins and appearance.
+
 #### tmux
 
 Famous terminal session manager with 3 abstractions layers: ``session``, ``window`` (within a ``session``), and ``pane`` (splits a window in several terminals).
@@ -477,6 +479,8 @@ ruff format
 #### nvim
 
 #### vscode
+
+Using the ``Settings sync`` function in vscode. Also, ``settings.json`` is saved.
 
 ## References
 
