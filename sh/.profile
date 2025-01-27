@@ -62,6 +62,7 @@ fi
 
 alias grep="grep --color=auto"
 alias n="nvim"
+alias lazygit="lazygit --config-files $XDG_CONFIG_HOME/lazygit/config.yml,themes/latte/blue.yml"
 alias lg="lazygit"
 
 alias y="yazi"

@@ -29,8 +29,8 @@ Here is the ordered list of applications and utility, organized as a todo-list u
 - [X] [fzf](#fzf)
 - [X] [git](#git)
 - [X] [iterm2](#iterm2)
-- [ ] [k9s](#k9s)
-- [ ] [lazygit](#lazygit)
+- [X] [k9s](#k9s)
+- [X] [lazygit](#lazygit)
 - [X] [mas](#mas)
 - [ ] [nvim](#nvim)
 - [ ] [obsidian](#obsidian)
@@ -39,7 +39,7 @@ Here is the ordered list of applications and utility, organized as a todo-list u
 - [X] [sh](#sh)
 - [ ] [starship](#starship)
 - [ ] [tmux](#tmux)
-- [ ] [uv](#uv)
+- [X] [uv](#uv)
 - [ ] [vscode](#vscode)
 - [X] [wezterm](#wezterm)
 - [X] [yazi](#yazi)
@@ -359,6 +359,11 @@ To be done from my windows machine.
 
 To be done from my windows machine.
 
+#### uv
+
+[uv](https://github.com/astral-sh/uv) is an extremely fast ``Python`` package and project manager.
+There are no specific configuration for uv.
+
 ### Version Control
 
 #### git
@@ -422,8 +427,9 @@ winget install fzf
 
 No configuration file.
 
-
 #### k9s
+
+The configuration is contained in ``config.yaml``. The TUI look is customized thanks to the [catppuccin](https://github.com/catppuccin/k9s) theme.
 
 #### obsidian
 
@@ -440,8 +446,6 @@ Other useful settings:
 
 ### Coding
 
-#### uv
-
 #### ruff
 
 ``ruff`` is an extremely fast Python linter and code formatter, written in Rust.
@@ -454,7 +458,7 @@ uv tool install ruff@latest  # Install Ruff globally.
 
 ##### Configuration
 
-A ``.ruff.toml`` file is used (other names are accepted too). ``ruff`` supports up to 800 lint rules (autoflake, flake8, pylint, pep8..)
+A ``.ruff.toml`` file is used (other names are accepted too). ``ruff`` supports up to 800 lint rules (autoflake, flake8, pylint, pep8..).
 
 ##### Usage
 
