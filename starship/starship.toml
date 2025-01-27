@@ -11,6 +11,12 @@ command_timeout = 1000
 [directory.substitutions]
 '~/tests/starship-custom' = 'work-project'
 
+[c]
+format = 'via [$name $version]($style)'
+
+[container]
+format = '[$symbol \[$name\]]($style) '
+
 [git_branch]
 format =  '[$symbol$branch(:$remote_branch)]($style)'
 
@@ -28,9 +34,6 @@ symbol = '☸ '
 disabled = true
 detect_files = ['Dockerfile']
 format = '[$symbol$context( \($namespace\))]($style) '
-contexts = [
-  { context_pattern = "arn:aws:eks:us-west-2:577926974532:cluster/zd-pvc-omer", style = "green", context_alias = "omerxx", symbol = " " },
-]
 
 [docker_context]
 disabled = true
@@ -64,3 +67,11 @@ mantle = "#181825"
 crust = "#11111b"
 
 
+[python]
+symbol = "🐍 "
+
+[shell]
+bash_indicator = "bsh"
+zsh_indicator = "zsh"
+powershell_indicator = ">_"
+cmd_indicator = "cmd"

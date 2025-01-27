@@ -37,7 +37,7 @@ Here is the ordered list of applications and utility, organized as a todo-list u
 - [X] [ranger](#ranger)
 - [X] [ruff](#ruff)
 - [X] [sh](#sh)
-- [ ] [starship](#starship)
+- [X] [starship](#starship)
 - [ ] [tmux](#tmux)
 - [X] [uv](#uv)
 - [X] [vscode](#vscode)
@@ -266,6 +266,8 @@ eval "$(zoxide init bash)"
 ### Shell prompt
 
 #### starship
+
+The [starship](https://starship.rs/config/) configuration is contained in ``starship.toml``.
 
 #### p10k
 
