@@ -435,7 +435,7 @@ The configuration is contained in ``config.yaml``. The TUI look is customized th
 
 #### obsidian
 
-The most important aspect is to keep the same plugins and appearance.
+The most important aspect is to keep the same plugins and appearance. ``Obsidian`` keeps its settings per vault in a ``.obsidian`` folder.
 
 #### tmux
 
