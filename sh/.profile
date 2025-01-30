@@ -2,11 +2,11 @@
 # to bre referenced by bash and zsh
 
 # Prevent .profile from being sourced multiple times
-if [ -z "$PROFILE_ALREADY_SOURCED" ]; then
-    export PROFILE_ALREADY_SOURCED=1
+if [ "$PROFILE" != "ALREADY_SOURCED" ]; then
+    # export PROFILE_ALREADY_SOURCED=1
     echo "Sourcing .profile, $USER!"
 else
-echo "Ignoring .profile, $USER!"
+    echo "Ignoring .profile, $USER!"
     return
 fi
 
@@ -28,10 +28,8 @@ alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/.tmux.conf"
 
 # Homebrew
 if [ "$OS" = "Darwin" ]; then
-    echo "Setting up brew in Darwin"
 	eval "$(/opt/homebrew/bin/brew shellenv)"
 elif [ "$OS" = "linux" ]; then
-    echo "Setting up brew in Linux"
 	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
@@ -100,7 +98,6 @@ if [ "$OS" = "Darwin" ]; then
     export CLICOLOR=1
     # Show the directories in light blue
     export LSCOLORS=Exfxcxdxbxegedabagacad
-    echo "OS is $OS, setting paths accordingly";
     if pathexists /Volumes/Journal; then
         alias j="cd /Volumes/Journal"
     fi
@@ -128,3 +125,6 @@ fi
 
 # Defaults
 export EDITOR="nvim"
+
+export PROFILE="ALREADY_SOURCED"
+echo "Done sourcing .profile"
