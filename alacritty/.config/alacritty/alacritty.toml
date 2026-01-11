@@ -5,7 +5,8 @@ TERM = "xterm-256color"
 [window]
 padding.x = 14
 padding.y = 14
-decorations = "Buttonless"
+decorations_theme_variant = "None"
+decorations = "Full"  #"Transparent" #"Buttonless"
 opacity = 0.9
 blur = true
 option_as_alt = "None"

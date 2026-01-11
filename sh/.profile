@@ -3,23 +3,23 @@
 
 # Prevent .profile from being sourced multiple times
 if [ "$PROFILE" != "ALREADY_SOURCED" ]; then
-    # export PROFILE_ALREADY_SOURCED=1
+    export PROFILE_ALREADY_SOURCED=1
     echo "Sourcing .profile, $USER!"
 else
     echo "Ignoring .profile, $USER!"
-    return
+    return 0
 fi
 
+#iexport PS1="\u@\h:\w$ "
+#export PS1="\[\033[0;32m\]\u\[\033[0;37m\]@\[\033[0;35m\]\h \[\033[0;34m\]\W\[\033[0;31m\]\$\[\033[0m\] "
+
 OS=$(uname) # Darwin Linux
-echo "OS is $OS"
+# echo "OS is $OS"
 
 # Configuration path to local .config folder
 if [ -z "$XDG_CONFIG_HOME" ]; then
     export XDG_CONFIG_HOME="$HOME/.config"
 fi
-
-# K9s
-export K9S_CONFIG_DIR="$HOME/.config/k9s"
 
 # TMUX
 export TMUX_PLUGIN_MANAGER_PATH="$XDG_CONFIG_HOME/tmux/plugins"
@@ -68,12 +68,6 @@ if exists "git"; then
     alias gf="git fetch"
 fi
 
-if exists "kubectl"; then
-    alias k="kubectl"
-    alias kgn="kubectl get nodes"
-    alias kgp="kubectl get pods"
-fi
-
 if exists "brew"; then
     alias bi="brew install"
     alias bs="brew search"
@@ -98,19 +92,10 @@ if [ "$OS" = "Darwin" ]; then
     export CLICOLOR=1
     # Show the directories in light blue
     export LSCOLORS=Exfxcxdxbxegedabagacad
-    if pathexists /Volumes/Journal; then
-        alias j="cd /Volumes/Journal"
+    if pathexists ~/PARA/01-Projects/; then
+        alias repos="cd ~/PARA/01-Projects/"
     fi
-    if pathexists /Volumes/Journal_analysis; then
-        alias ja="cd /Volumes/Journal_analysis"
-    fi
-    if pathexists ~/Documents/repos/; then
-        alias repos="cd ~/Documents/repos/"
-    fi
-    if pathexists ~/NAScopy; then
-        alias nas="cd ~/NAScopy/"
-    fi
-    export ICLOUD_DOCS=$HOME/Library/Mobile\ Documents/com~apple~CloudDocs/Documents
+    export ICLOUD_DOCS=$HOME/Library/"Mobile Documents"/com~apple~CloudDocs/Documents
     if pathexists "$ICLOUD_DOCS"; then
         alias icloud="cd $ICLOUD_DOCS"
     fi
@@ -124,7 +109,7 @@ else
 fi
 
 # Defaults
-export EDITOR="nvim"
+export EDITOR="vim"
 
 export PROFILE="ALREADY_SOURCED"
-echo "Done sourcing .profile"
+# echo "Done sourcing .profile"
