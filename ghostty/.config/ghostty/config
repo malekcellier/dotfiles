@@ -1,0 +1,27 @@
+# Environment
+command = /opt/homebrew/bin/bash -l
+
+# Window styling and padding
+window-padding-x = 14
+window-padding-y = 14
+background-opacity = 0.9
+background-blur = true
+window-decoration = true
+
+# Font configuration
+font-family = "MesloLGS Nerd Font Mono"
+font-size = 14
+
+# Cursor configuration
+cursor-style = block
+cursor-style-blink = true
+
+# Mouse behavior
+mouse-hide-while-typing = true
+
+# Clipboard
+clipboard-read = allow
+clipboard-write = allow
+
+# Theme (Note the Capitalization and Space)
+theme = Catppuccin Mocha
