@@ -1,11 +1,7 @@
-echo "Sourcing .bash_profile, $USER!"
+# ~/.bash_profile
+[ -f "$HOME/.profile" ] && . "$HOME/.profile"
 
-# Source .profie to ensure login shells still load common settings
-if [ -f ~/.profile ]; then
-    source ~/.profile
-fi
-
-# Source .bashrc for interactive configurations
-if [ -f ~/.bashrc ]; then
-   source ~/.bashrc
+# Ensure interactive bash sessions also get ~/.bashrc when using a login shell
+if [ -n "$BASH_VERSION" ] && [[ $- == *i* ]]; then
+  [ -f "$HOME/.bashrc" ] && . "$HOME/.bashrc"
 fi
