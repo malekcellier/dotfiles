@@ -24,4 +24,4 @@ clipboard-read = allow
 clipboard-write = allow
 
 # Theme (Note the Capitalization and Space)
-theme = Catppuccin Mocha
+theme = light:Catppuccin Latte,dark:Catppuccin Mocha
