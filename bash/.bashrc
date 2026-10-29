@@ -4,50 +4,16 @@ case $- in
   *) return ;;
 esac
 
-OS="$(uname -s)"
-
-# helpers
-exists() { command -v "$1" >/dev/null 2>&1; }
-pathexists() { [ -e "$1" ]; }
-
-# tmux (interactive)
-export TMUX_PLUGIN_MANAGER_PATH="${XDG_CONFIG_HOME:-$HOME/.config}/tmux/plugins"
-if exists tmux && pathexists "${XDG_CONFIG_HOME:-$HOME/.config}/tmux/.tmux.conf"; then
-  alias tmux="tmux -f ${XDG_CONFIG_HOME:-$HOME/.config}/tmux/.tmux.conf"
+# Shared aliases (Bash and Zsh)
+if [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases.sh" ]; then
+    . "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliases.sh"
 fi
 
-# base aliases
-alias c="clear"
-alias e="exit"
-alias ll="ls -ahl"
-alias l="ls -Ch"
-
-# GNU vs BSD (macOS) differences
-if [ "$OS" = "Darwin" ]; then
-  alias ls="ls -CF -G"
-  export CLICOLOR=1
-  export LSCOLORS=Exfxcxdxbxegedabagacad
-else
-  alias ls="ls -CF --color=auto"
-  alias grep="grep --color=auto"
+# tmux: temporary alias until we adopt the standard XDG config filename
+if command -v tmux >/dev/null 2>&1 &&
+   [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/tmux/.tmux.conf" ]; then
+    alias tmux='tmux -f "${XDG_CONFIG_HOME:-$HOME/.config}/tmux/.tmux.conf"'
 fi
-
-# git
-if exists git; then
-  alias gl="git log"
-  alias gst="git status"
-  alias gp="git pull"
-  alias gf="git fetch"
-fi
-
-# brew
-if exists brew; then
-  alias bi="brew install"
-  alias bs="brew search"
-fi
-
-exists nvim && alias n="nvim"
-exists yazi && alias y="yazi"
 
 # ----- Prompt: status + user@host:path + optional (gitbranch) -----
 
