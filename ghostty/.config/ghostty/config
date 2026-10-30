@@ -1,4 +1,4 @@
-# Environment
+# Environment, use bash
 command = /opt/homebrew/bin/bash -l
 
 # Window styling and padding
